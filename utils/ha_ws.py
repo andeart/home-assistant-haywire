@@ -5,7 +5,8 @@ from contextlib import asynccontextmanager
 
 import websockets
 
-HA_WS_URL = "ws://homeassistant.local:8123/api/websocket"
+HA_HOST = os.environ.get("HA_HOST", "homeassistant.local:8123")
+HA_WS_URL = f"ws://{HA_HOST}/api/websocket"
 
 
 @asynccontextmanager

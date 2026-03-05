@@ -11,7 +11,7 @@ fi
 
 [[ -d .venv ]] || python3 -m venv .venv
 source .venv/bin/activate
-pip install -r utils/requirements.txt
+pip install -q --disable-pip-version-check -r utils/requirements.txt
 
 if ! yamllint -d "{extends: relaxed, rules: {line-length: disable}}" "temp/${1}.yaml"; then
     echo "YAML lint failed. Aborting push." >&2

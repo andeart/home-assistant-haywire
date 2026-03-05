@@ -11,7 +11,7 @@ fi
 
 [[ -d .venv ]] || python3 -m venv .venv
 source .venv/bin/activate
-pip install -r utils/requirements.txt
+pip install -q --disable-pip-version-check -r utils/requirements.txt
 
 mkdir -p temp
 python3 utils/util_pull_dash.py "$1" | jq '.result' | yq -P > "temp/${1}.yaml"
