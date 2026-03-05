@@ -31,7 +31,7 @@ Note: The `yamllint` in `push-dash` isn't optional. HA's WS API will silently ac
 
 - `jq` and `yq`: used in the pull pipeline to extract and reshape the nested JSON config payload into YAML
 - `yamllint`: validates the edited YAML before push to prevent silent dashboard corruption
-- `python3` with `pip`
+- `python3` with `pip`: runtime for the WebSocket scripts
 
 The shell scripts automatically create a `.venv` and install the required pip packages:
 
