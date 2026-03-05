@@ -13,10 +13,10 @@ source .venv/bin/activate
 pip install websockets
 pip install pyyaml
 
-if ! yamllint -d "{extends: relaxed, rules: {line-length: disable}}" temp/"$1".yaml; then
+if ! yamllint -d "{extends: relaxed, rules: {line-length: disable}}" "temp/${1}.yaml"; then
     echo "YAML lint failed. Aborting push." >&2
     exit 1
 fi
 
-python3 utils/util_push_dash.py temp/"$1".yaml
-echo "Pushed temp/"$1".yaml back to HA."
+python3 utils/util_push_dash.py "temp/${1}.yaml" "$1"
+echo "Pushed temp/${1}.yaml back to HA."
