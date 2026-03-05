@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # USAGE
 # ./push-dash.sh my-dashboard-slug
