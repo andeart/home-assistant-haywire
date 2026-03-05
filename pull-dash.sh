@@ -9,9 +9,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-python3 -m venv .venv
+[[ -d .venv ]] || python3 -m venv .venv
 source .venv/bin/activate
-pip install websockets
+pip install -r utils/requirements.txt
 
 mkdir -p temp
 python3 utils/util_pull_dash.py "$1" | jq '.result' | yq -P > "temp/${1}.yaml"
