@@ -1,11 +1,14 @@
 # H.A.Y.W.I.R.E.
+
 *Home Assistant YAML WebSocket Interface for Resources & Entities*
 
 CLI tooling for round-tripping UI-managed Home Assistant Lovelace dashboard configs and helper entities via the WebSocket API. Pull, edit locally, lint, and push back, all without a server restart.
 
 ## Why?
 
-HA stores managed (UI-mode) Lovelace dashboards in `.storage/lovelace.*` as JSON. Editing these files directly requires a full server restart for HA to invalidate its memory cache and reload them. HA may also flush its in-memory state back to disk on restart, overwriting our edits entirely. YAML-mode dashboards don't have this problem, of course, but we lose the visual editor there.
+HA stores managed (UI-mode) Lovelace dashboards in `.storage/lovelace.`* as JSON. Editing these files directly requires a full server restart for HA to invalidate its memory cache and reload them. HA may also flush its in-memory state back to disk on restart, overwriting our edits entirely. YAML-mode dashboards don't have this problem, of course, but we lose the visual editor there.
+
+Similarly for helper entities stored in `.storage/input_` files (and similar): edits there carry the same drawback of a required restart and the risk of being overwritten.
 
 The WebSocket API sidesteps this entirely. `lovelace/config` reads the live config, `lovelace/config/save` writes it back. Changes take effect immediately without a restart. The shell scripts abstract away that round-trip.
 
