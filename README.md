@@ -1,6 +1,6 @@
-# HA Dashboard Configuration Editor
+# HA Dashboard & Helpers Configuration Editor
 
-CLI tooling for round-tripping Home Assistant Lovelace dashboard configs via the WebSocket API. Pull, edit locally, lint, and push back, all without a server restart.
+CLI tooling for round-tripping Home Assistant Lovelace dashboard configs and UI-managed helper entities via the WebSocket API. Pull, edit locally, lint, and push back, all without a server restart.
 
 ## Why?
 
@@ -17,6 +17,8 @@ Note: The `yamllint` in `push-dash` isn't optional. HA's WS API will silently ac
 
 ## Usage
 
+### Dashboards
+
 ```bash
 # Pull a dashboard by its URL path
 ./pull-dash.sh my-dashboard-slug
@@ -26,6 +28,38 @@ Note: The `yamllint` in `push-dash` isn't optional. HA's WS API will silently ac
 ./push-dash.sh my-dashboard-slug
 # runs yamllint, then pushes temp/my-dashboard-slug.yaml to HA
 ```
+
+### Helper entities
+
+Supports: `input_boolean`, `input_number`, `input_select`, `input_text`, `input_datetime`, `input_button`, `counter`, `timer`, `schedule`.
+
+```bash
+# Pull all helper entities
+./pull-helpers.sh
+# saves to temp/helpers.yaml and opens the file for editing
+
+# Push helper changes back (creates new + updates existing, no deletes)
+./push-helpers.sh
+# runs yamllint, diffs against HA, shows change plan, asks for confirmation
+
+# Skip interactive confirmation
+./push-helpers.sh --yes
+```
+
+The helpers YAML is keyed by type, with each entry preserving its `id` from HA:
+
+```yaml
+input_boolean:
+  - id: guest_mode
+    name: Guest Mode
+    icon: mdi:account-group
+counter:
+  - id: coffee_count
+    name: Coffee Count
+    step: 1
+```
+
+Note: when creating new helpers, HA auto-generates the `id` from the `name`. The `id` field in the YAML for new entries is informational only.
 
 ## Dependencies
 
