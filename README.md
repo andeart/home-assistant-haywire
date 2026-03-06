@@ -1,6 +1,7 @@
-# HA Dashboard & Helpers Configuration Editor
+# H.A.Y.W.I.R.E.
+*Home Assistant YAML WebSocket Interface for Resources & Entities*
 
-CLI tooling for round-tripping Home Assistant Lovelace dashboard configs and UI-managed helper entities via the WebSocket API. Pull, edit locally, lint, and push back, all without a server restart.
+CLI tooling for round-tripping UI-managed Home Assistant Lovelace dashboard configs and helper entities via the WebSocket API. Pull, edit locally, lint, and push back, all without a server restart.
 
 ## Why?
 
